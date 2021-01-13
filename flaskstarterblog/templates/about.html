@@ -1,0 +1,58 @@
+<!-- About Page -->
+
+{% extends "base.html" %}
+
+{% block title %}
+About
+{% endblock %}
+
+{% block content  %}
+        <div class="mt-4 mb-5">
+                <div class="row">
+                        <h1 class="d-md-none d-block"> Starter Blog with Flask <br> </h1>
+                        <div class="col-12 col-md-6 aboutPage-img text-center">
+                                <img src="{{ url_for('static', filename='/assets/About_img.jpg') }}"
+                                 class="w-75 m-auto" alt="Flask starter Blog">
+                        </div>
+                        <div class="col-12 col-md-6 aboutPage-cont">
+                                <h1 class="d-md-block d-none"> Flask Starter Blog </h1>
+                                <br>
+                                <p>
+                                        <b>hi there</b>, this web page is a starter blog with flask , jquery 
+                                        and bootstrap. you can sign in or login -nav links- and test this
+                                        website.<br>
+                                        also you can post a blog. you can update or delete a blog post
+                                        if you post it with your own account. this website's DB powered
+                                        by Sqlite but you can change it in <b>SQLALCHEMY</b> config and use
+                                        other database.<br>
+                                        i decide to make this website black and white but you can use
+                                        beautiful colors for your own. Please check 
+                                        <b>github documentation</b>
+                                        for more informations. other projects in my account: 
+                                        <a class="links" href="https://github.com/aahmadnejad/" target="__blank">
+                                        aahmadnejad</a><br>
+                                        <b>
+                                        ok then, check other links in navbar and i'll write some Lorem ipsum
+                                        text for this page :)
+                                        </b>
+                                        <br><br>
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, 
+                                        repellendus, tempore rerum repudiandae, commodi quam harum itaque
+                                        magni nobis fuga laboriosam soluta facere ducimus enim praesentium. 
+                                        Aspernatur doloribus numquam excepturi. Lorem ipsum, dolor sit amet
+                                        consectetur adipisicing elit. Hic, repellendus, tempore rerum 
+                                        repudiandae, commodi quam harum itaque.<br>
+                                        magni nobis fuga laboriosam soluta facere ducimus enim praesentium. 
+                                        Aspernatur doloribus numquam excepturi.<br><br>
+                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, 
+                                        repellendus, tempore rerum repudiandae, commodi quam harum itaque
+                                        magni nobis fuga laboriosam soluta facere ducimus enim praesentium. 
+                                        Aspernatur doloribus numquam excepturi.
+                                </p>
+                        </div>
+                </div>
+
+        </div>
+
+
+{% endblock %}

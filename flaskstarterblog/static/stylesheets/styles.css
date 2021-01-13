@@ -1,0 +1,25 @@
+#body_content{
+        min-height: 80vh;
+}
+
+.links{
+        text-decoration: none;
+        color: black;
+        border-bottom: 2px dotted;
+}
+.links:hover{
+        text-decoration: none;
+        color: black;
+        border-bottom: 3px dotted;
+}
+
+#footer li{
+        list-style-type: none;
+        color: black;
+        text-decoration: underline;
+}
+
+#footer a{
+        list-style-type: none;
+        color: black;
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title%}
+404
+{% endblock %}
+
+{% block content %}
+
+        <div class="row">
+                <div class="col-12 col-md-8">
+                        <br><br>
+                        <h1>
+                                There is a Spider Guard that says you haven't access to this page
+                        </h1>
+                        <br>
+                        <h4>
+                                if you are author  <a href='{{url_for("core.index")}}'>Login</a> to your accout first then try again
+                               
+                                or choose other Links from navbar
+                        </h4>
+                        <br>
+                        <h5>
+                                don't have a account? Create an account:
+                                <a href='{{url_for("core.index")}}'>sign up</a>
+                        </h5>
+                </div>
+                <div class="col-12 col-md-4">
+                        <img src="{{ url_for('static', filename='/assets/error_gif403.gif') }}"
+                                loop=infinite
+                                class="w-75 m-auto" alt="Flask starter Blog">
+                </div>
+        </div>
+
+{% endblock  %}

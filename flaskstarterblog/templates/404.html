@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title%}
+404
+{% endblock %}
+
+{% block content %}
+
+        <div class="row">
+                <div class="col-12 col-md-8">
+                        <br><br>
+                        <h1>
+                                Sorry this page is not in our Spider's web
+                        </h1>
+                        <br>
+                        <h4>
+                                you can start again from 
+                                <a href='{{url_for("core.index")}}'>Home Page</a>
+                                or choose other Links from navbar
+                        </h4>
+                </div>
+                <div class="col-12 col-md-4">
+                        <img src="{{ url_for('static', filename='/assets/error_gif.gif') }}"
+                                loop=infinite
+                                class="w-75 m-auto" alt="Flask starter Blog">
+                </div>
+        </div>
+
+{% endblock  %}

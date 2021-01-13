@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+        post
+{% endblock %}
+
+
+{% block content %}
+        
+<div>
+        <form class="form-control mt-5 shadow-sm p-4" method="POST">
+                {{form.hidden_tag()}}
+
+                <div class="form-group">
+                        {{form.title.label(class="form-label")}}
+                        {{form.title(class="form-control rounded-pill")}}
+                </div>
+
+                
+                <div class="form-group mt-4">
+                        {{form.text.label(class="form-label")}}
+                        {{form.text(class="form-control rounded-3 h-100")}}
+                </div>
+                <div class="d-grid gap-2 align-content-center align-items-center col-3 mx-auto">
+                        {{form.submit(class="btn btn-dark w-100 mt-5 rounded-pill shadow h-50")}}
+                </div>
+        </form>
+</div>
+
+{% endblock  %}
+        
+        

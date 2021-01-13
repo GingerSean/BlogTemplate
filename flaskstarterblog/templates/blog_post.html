@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+        {{post.title}}
+{% endblock %}
+
+
+{% block content %}
+        
+<div>
+        <h1 class="mt-4 mb-2">{{post.title}}</h1>
+        <h4>by: {{post.author.username}}</h4>
+        <small>{{post.date.strftime('%B %d , %Y')}}</small>
+        <p class='mt-5 mb-5'>{{post.text}}</p>
+
+        
+        {% if post.author == current_user %}
+                <div class="mb-5 mt-2 border border-dark p-3">
+                        hi <b>{{current_user.username}}</b>,  you can delete or update your post:<br>
+                        <a class="btn btn-outline-dark mt-2"
+                        href="{{url_for('blog_posts.update_post' , blog_id = post.id)}}">
+                        update
+                        </a>
+                        <a class="btn btn-outline-danger mt-2"
+                         href="{{url_for('blog_posts.delete_post' , blog_id = post.id)}}">
+                         delete
+                        </a>
+                </div>
+        {% endif %}
+                
+</div>
+
+{% endblock  %}
+        
+        

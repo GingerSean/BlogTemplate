@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+        profile
+{% endblock %}
+
+
+{% block content %}
+<form method="POST" action="" enctype="multipart/form-data"  class="form-control my-5 shadow-sm p-4" >
+        {{form.hidden_tag()}}
+        <div class='d-grid gap-2 align-content-center align-items-center mx-auto'>
+                <img align='center' class="shadow rounded-circle mx-auto border border-dark"  src="{{url_for('static' , filename = 'profilePics/' + current_user.profile_pic)}}">
+        </div>
+        <div class="mb-3 mt-5">
+                {{form.email.label(class="form-label")}}
+                {{form.email(class="form-control rounded-pill")}}
+        </div>
+        <div class="mb-3">
+                {{form.username.label(class="form-label")}}
+                {{form.username(class="form-control rounded-pill")}}
+        </div>
+        <div class="mb-3">
+                {{form.password.label(class="form-label")}}
+                {{form.password(class="form-control rounded-pill")}}
+        </div>
+        <div class="mb-3">
+                {{form.password_retype.label(class="form-label")}}
+                {{form.password_retype(class="form-control rounded-pill")}}
+        </div>
+        <div class="mb-3">
+                {{form.profile_pic.label(class="form-label")}}
+                {{form.profile_pic(class="form-control rounded-pill")}}
+        </div>
+        <div class="d-grid gap-2 align-content-center align-items-center col-3 mx-auto">
+                {{form.submit(class="btn btn-dark w-100 my-4 rounded-pill shadow h-50")}}
+        </div>
+</form>
+{% endblock %}
+        
+        
