@@ -1,1 +1,10 @@
 Generic single-database configuration.
+
+###########################
+if you want up update this database
+###########################
+should just be able to open the terminal then run (assuming you have Flask Migrate installed - should be in venv)
+>> flask db init (may fail)
+>> flask db migrate -m "Description of changes"
+>> flask db upgrade
+

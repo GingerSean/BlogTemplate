@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField , SubmitField , PasswordField , ValidationError
-import email_validator
-from wtforms.validators import DataRequired , Email , EqualTo
-from flask_wtf.file import FileField , FileAllowed
-from flask_login import  current_user
+from flask_wtf.file import FileField, FileAllowed
 from flaskstarterblog.models import User
+from wtforms import StringField, SubmitField, PasswordField, ValidationError
+from wtforms.validators import DataRequired, Email, EqualTo
+
 
 class LoginForm ( FlaskForm ):
         username = StringField ('User name' , validators=[DataRequired()] )

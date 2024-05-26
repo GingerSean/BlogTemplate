@@ -27,22 +27,24 @@ class User( db.Model , UserMixin ):
                 return f"user name is {self.username} and pass is {self.password}"
 
 
-class BlogPost( db.Model ):
 
-        users = db.relationship( User )
+class BlogPost(db.Model):
+    __tablename__ = 'blog_post'
 
-        id = db.Column ( db.Integer , primary_key = True )
-        userId = db.Column ( db.Integer , db.ForeignKey('users.id') , nullable = False )
-        date = db.Column ( db.DateTime , nullable = False , default = datetime.utcnow )
+    id = db.Column(db.Integer, primary_key=True)
+    userId = db.Column(db.Integer , db.ForeignKey('users.id') , nullable = False )
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    title = db.Column(db.String(128), nullable=False)
+    text = db.Column(db.Text, nullable=False)
+    base_image = db.Column(db.String(128))  # Assuming the filename will be stored
+    synopsis = db.Column(db.Text)
 
-        title = db.Column ( db.String(128) , nullable = False )
-        text = db.Column ( db.Text , nullable = False )
+    def __init__(self, title, text, userId, base_image=None, synopsis=None):
+        self.title = title
+        self.text = text
+        self.userId = userId
+        self.base_image = base_image
+        self.synopsis = synopsis
 
-        def __init__(self , title , text , userId):
-                self.title = title
-                self.text = text
-                self.userId = userId
-
-        def __repr__(self):
-                return f"blog title is {self.title} with id of {self.id}"
-
+    def __repr__(self):
+        return f"BlogPost(title={self.title}, id={self.id})"

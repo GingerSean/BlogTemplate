@@ -1,60 +1,59 @@
 {% extends "base.html" %}
 
-{% block title%}
+{% block title %}
 home
 {% endblock %}
 
-{% block content  %}
+{% block content %}
 
-        <h1 class='mt-4'> Blogs:</h1>
-        <br>
+<h1 class='mt-4'>Blogs:</h1>
+<br>
 
+<div class="row">
+  {% for post in blog_posts.items %}
+  <div class="col-12">
+    <a href="{{url_for('blog_posts.blog_post' , blog_id = post.id)}}" class="links card-link">
+      <div class="card p-2 my-4 shadow">
         <div class="row">
-        {% for post in blog_posts.items %}
-                <div class="col-12 col-md-6 col-lg-4">
-                        <div class = 'card p-2 my-4 shadow'>
-                                <div class = 'card-body'>
-                                        <a href="{{url_for('blog_posts.blog_post' , blog_id = post.id)}}" class='links'>
-                                                <h2 class='card-title'>
-                                                        {{post.title}}
-                                                </h2> 
-                                        </a>
-                                        <h5>
-                                                by:<a class='card-title links' 
-                                                href="{{url_for('users.user_posts' , username = post.author.username)}}">
-                                                         {{post.author.username}}
-                                                </a>
-                                        </h5>
-                                        <small>{{post.date.strftime('%B %d , %Y')}}</small>
-                                </div>
-                        </div>
-                </div>
-        {% endfor %}
-
-        <br/>
-
+          <div class="col-md-5 order-md-2">
+            {% if post.base_image %}
+            <img src="{{ post.base_image }}" class="card-img-top" alt="Post Image" style="max-height: 200px; max-width: 100%; object-fit: cover;">
+            {% endif %}
+          </div>
+          <div class="col-md-7 order-md-1">
+            <div class="card-body">
+              <h2 class="card-title">{{post.title}}</h2>
+              <p class="card-text">{{ post.synopsis }}</p>
+              <small>{{post.date.strftime('%B %d, %Y')}}</small>
+            </div>
+          </div>
         </div>
-        <nav aria-label="Page Navigation example">
-                <ul class="pagination justify-content-center">
-                        
-                        {% for page in blog_posts.iter_pages(left_edge = 1 , right_edge = 1 , left_current = 1 , right_current = 2) %}
-                                
-                                
-                                {% if blog_posts.page == page_num %}
-                                        <li class="page-item disabled">
-                                                <a href="{{url_for('core.index', page = page)}}" 
-                                                class="page-link"> {{page}}</a>
-                                        </li>
-                                {% else %}
-                                        <li class="page-item">
-                                                <a href="{{url_for('core.index', page = page)}}" 
-                                                class="page-link"> {{page}}</a>
-                                        </li>
-                                {% endif %}
-                                        
-                        {% endfor %}    
-                </ul>
-        </nav>
-                
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</div>
 
-{% endblock  %}
+
+
+
+
+
+
+<nav aria-label="Page Navigation example">
+    <ul class="pagination justify-content-center">
+        {% for page in blog_posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if blog_posts.page == page_num %}
+        <li class="page-item disabled">
+            <a href="{{url_for('core.index', page=page)}}" class="page-link">{{page}}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+            <a href="{{url_for('core.index', page=page)}}" class="page-link">{{page}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+{% endblock %}

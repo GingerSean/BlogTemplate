@@ -1,33 +1,75 @@
 {% extends 'base.html' %}
 
-
 {% block title %}
-        post
+    New Post
 {% endblock %}
 
-
 {% block content %}
-        
 <div>
-        <form class="form-control mt-5 shadow-sm p-4" method="POST">
-                {{form.hidden_tag()}}
+    <form class="form-control mt-5 shadow-sm p-4" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
 
-                <div class="form-group">
-                        {{form.title.label(class="form-label")}}
-                        {{form.title(class="form-control rounded-pill")}}
-                </div>
+        <div class="form-group">
+            {{ form.title.label(class="form-label") }}
+            {{ form.title(class="form-control rounded-pill") }}
+        </div>
 
-                
-                <div class="form-group mt-4">
-                        {{form.text.label(class="form-label")}}
-                        {{form.text(class="form-control rounded-3 h-100")}}
-                </div>
-                <div class="d-grid gap-2 align-content-center align-items-center col-3 mx-auto">
-                        {{form.submit(class="btn btn-dark w-100 mt-5 rounded-pill shadow h-50")}}
-                </div>
-        </form>
+        <!-- Add Base Image Field -->
+        <div class="form-group mt-4">
+            {{ form.base_image.label(class="form-label") }}
+            {{ form.base_image(class="form-control rounded-pill", id="base_image_input", type="file") }}
+        </div>
+
+        <!-- Add Synopsis Field -->
+        <div class="form-group mt-4">
+            {{ form.synopsis.label(class="form-label") }}
+            {{ form.synopsis(class="form-control rounded-3", rows=4) }}
+        </div>
+
+        <div class="form-group mt-4">
+            {{ form.text.label(class="form-label") }}
+            {{ form.text(class="form-control rounded-3", id="editor", rows=10) }}
+        </div>
+
+        <div class="d-grid gap-2 align-content-center align-items-center col-3 mx-auto">
+            {{ form.submit(class="btn btn-dark w-100 mt-5 rounded-pill shadow h-50") }}
+        </div>
+    </form>
 </div>
 
-{% endblock  %}
-        
-        
+<!-- Include WYSIWYG Editor Script -->
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            // Configure the upload adapter
+            ckfinder: {
+                uploadUrl: '/upload/image'
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    document.getElementById('base_image_input').addEventListener('change', function (event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = new Image();
+                img.src = e.target.result;
+
+                // Insert the image into the editor
+                ClassicEditor.instances[0].model.change(writer => {
+                    writer.insertHtml('<img src="' + img.src + '" alt="Uploaded Image">');
+                });
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+</script>
+
+
+
+{% endblock %}
