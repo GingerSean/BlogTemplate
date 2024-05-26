@@ -1,10 +1,12 @@
 from flask_wtf import FlaskForm
-from sqlalchemy.sql.elements import RollbackToSavepointClause
-from wtforms import StringField , SubmitField , TextAreaField
+from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
+from flask_wtf.file import FileField, FileAllowed
+
 
 class BlogPostInfo(FlaskForm):
-        title = StringField( 'Blogs title' , validators=[DataRequired()])
-        text = TextAreaField( 'Blogs text' , validators=[DataRequired()])
-        submit = SubmitField( ' post')
-        
+    title = StringField('Blog Title', validators=[DataRequired()])
+    text = TextAreaField('Blog Text')
+    base_image = FileField('Base Image', validators=[FileAllowed(['jpg', 'png', 'jpeg'])])
+    synopsis = TextAreaField('Synopsis')
+    submit = SubmitField('Post')

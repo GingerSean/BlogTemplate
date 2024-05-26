@@ -2,27 +2,35 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-import os
-
+# import os
+from flaskstarterblog.config import Config
 
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecret'
+# app.config['SECRET_KEY'] = 'mysecret'
+#
+# ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+# BLOG_IMAGE_UPLOAD_FOLDER = 'static/images'
+app.config.from_object(Config)
 
-####### DB Setup ##################
-directory = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ os.path.join (directory , 'dbdata.sqlite')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# ####### DB Setup ##################
+# directory = os.path.abspath(os.path.dirname(__file__))
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ os.path.join (directory , 'dbdata.sqlite')
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# db = SQLAlchemy(app)
+# Migrate(app,db)
+#
+# ####### Login manager ############
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# login_manager.login_view = 'users.login'
+
+# Initialize SQLAlchemy and other extensions...
 db = SQLAlchemy(app)
-Migrate(app,db)
-
-####### Login manager ############
+migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = 'users.login'
-
-
 
 ####### Blueprint register########
 from flaskstarterblog.core.views import core
